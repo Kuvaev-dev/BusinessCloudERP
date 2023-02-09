@@ -8,7 +8,51 @@ namespace CloudERP.Controllers
 {
     public class HomeController : Controller
     {
+        DatabaseAccess.CloudDBEntities db = new DatabaseAccess.CloudDBEntities();
+
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult LoginUser(string email, string password)
+        {
+            var user = db.tblUser.Where(u => u.Email == email && u.Password == password).FirstOrDefault();
+            if (user != null)
+            {
+                Session["UserTypeID"] = user.UserTypeID;
+                Session["FullName"] = user.FullName;
+                Session["Email"] = user.Email;
+                Session["ContactNo"] = user.ContactNo;
+                Session["UserName"] = user.UserName;
+                Session["Password"] = user.Password;
+                Session["IsActive"] = user.IsActive;
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Message = "Incorrect creditionals";
+
+                Session["UserTypeID"] = string.Empty;
+                Session["FullName"] = string.Empty;
+                Session["Email"] = string.Empty;
+                Session["ContactNo"] = string.Empty;
+                Session["UserName"] = string.Empty;
+                Session["Password"] = string.Empty;
+                Session["IsActive"] = string.Empty;
+            }
+
+            return View();
+        }
+
+        public ActionResult ForgotPassword()
         {
             return View();
         }

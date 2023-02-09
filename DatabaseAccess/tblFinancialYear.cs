@@ -28,10 +28,10 @@ namespace DatabaseAccess
         public System.DateTime EndDate { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual tblUser tblUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTransaction> tblTransaction { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTransaction> tblTransaction1 { get; set; }
+        public virtual tblUser tblUser { get; set; }
     }
 }
