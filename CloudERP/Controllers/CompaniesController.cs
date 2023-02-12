@@ -6,25 +6,26 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CloudERP.Helpers;
 using DatabaseAccess;
 
 namespace CloudERP.Controllers
 {
-    public class UserTypesController : Controller
+    public class CompaniesController : Controller
     {
         private CloudDBEntities db = new CloudDBEntities();
 
-        // GET: UserTypes
+        // GET: Companies
         public ActionResult Index()
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
                 return RedirectToAction("Login", "Home");
             }
-            return View(db.tblUserType.ToList());
+            return View(db.tblCompany.ToList());
         }
 
-        // GET: UserTypes/Details/5
+        // GET: Companies/Details/5
         public ActionResult Details(int? id)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
@@ -35,15 +36,15 @@ namespace CloudERP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblUserType tblUserType = db.tblUserType.Find(id);
-            if (tblUserType == null)
+            tblCompany tblCompany = db.tblCompany.Find(id);
+            if (tblCompany == null)
             {
                 return HttpNotFound();
             }
-            return View(tblUserType);
+            return View(tblCompany);
         }
 
-        // GET: UserTypes/Create
+        // GET: Companies/Create
         public ActionResult Create()
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
@@ -53,12 +54,12 @@ namespace CloudERP.Controllers
             return View();
         }
 
-        // POST: UserTypes/Create
+        // POST: Companies/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(tblUserType tblUserType)
+        public ActionResult Create(tblCompany tblCompany)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
@@ -66,15 +67,31 @@ namespace CloudERP.Controllers
             }
             if (ModelState.IsValid)
             {
-                db.tblUserType.Add(tblUserType);
+                db.tblCompany.Add(tblCompany);
                 db.SaveChanges();
+
+                if (tblCompany.LogoFile != null)
+                {
+                    var folder = "~/Content/Icons";
+                    var file = string.Format("{0}.png", tblCompany.CompanyID);
+                    var response = FileHelper.UploadPhoto(tblCompany.LogoFile, folder, file);
+
+                    if (response)
+                    {
+                        var picture = string.Format("{0}/{1}", folder, file);
+                        tblCompany.Logo = picture;
+                        db.Entry(tblCompany).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
+
                 return RedirectToAction("Index");
             }
 
-            return View(tblUserType);
+            return View(tblCompany);
         }
 
-        // GET: UserTypes/Edit/5
+        // GET: Companies/Edit/5
         public ActionResult Edit(int? id)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
@@ -85,20 +102,20 @@ namespace CloudERP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblUserType tblUserType = db.tblUserType.Find(id);
-            if (tblUserType == null)
+            tblCompany tblCompany = db.tblCompany.Find(id);
+            if (tblCompany == null)
             {
                 return HttpNotFound();
             }
-            return View(tblUserType);
+            return View(tblCompany);
         }
 
-        // POST: UserTypes/Edit/5
+        // POST: Companies/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(tblUserType tblUserType)
+        public ActionResult Edit(tblCompany tblCompany)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
@@ -106,14 +123,29 @@ namespace CloudERP.Controllers
             }
             if (ModelState.IsValid)
             {
-                db.Entry(tblUserType).State = EntityState.Modified;
+                if (tblCompany.LogoFile != null)
+                {
+                    var folder = "~/Content/Icons";
+                    var file = string.Format("{0}.png", tblCompany.CompanyID);
+                    var response = FileHelper.UploadPhoto(tblCompany.LogoFile, folder, file);
+
+                    if (response)
+                    {
+                        var picture = string.Format("{0}/{1}", folder, file);
+                        tblCompany.Logo = picture;
+                        db.Entry(tblCompany).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                }
+
+                db.Entry(tblCompany).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(tblUserType);
+            return View(tblCompany);
         }
 
-        // GET: UserTypes/Delete/5
+        // GET: Companies/Delete/5
         public ActionResult Delete(int? id)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
@@ -124,15 +156,15 @@ namespace CloudERP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblUserType tblUserType = db.tblUserType.Find(id);
-            if (tblUserType == null)
+            tblCompany tblCompany = db.tblCompany.Find(id);
+            if (tblCompany == null)
             {
                 return HttpNotFound();
             }
-            return View(tblUserType);
+            return View(tblCompany);
         }
 
-        // POST: UserTypes/Delete/5
+        // POST: Companies/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -141,8 +173,8 @@ namespace CloudERP.Controllers
             {
                 return RedirectToAction("Login", "Home");
             }
-            tblUserType tblUserType = db.tblUserType.Find(id);
-            db.tblUserType.Remove(tblUserType);
+            tblCompany tblCompany = db.tblCompany.Find(id);
+            db.tblCompany.Remove(tblCompany);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
