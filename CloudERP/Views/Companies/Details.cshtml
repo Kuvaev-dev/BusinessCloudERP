@@ -1,34 +1,30 @@
 ﻿@model DatabaseAccess.tblCompany
 
 @{
-    ViewBag.Title = "Company Details";
+    ViewBag.Title = "Company Information";
 }
 
-<h2>Company</h2>
-
-<div>
-    <h4>Details</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Company Title
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            Logo
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Logo)
-        </dd>
-
-    </dl>
+<div class="card">
+    <div class="row row-flush">
+        <div class="col-md-4">
+            <img src="@Url.Content(Model.Logo)" width="350" height="350" style="padding: 5%;"/>
+        </div>
+        <div class="col-8">
+            <div class="p-4">
+                <div>
+                    <div style="float: right;">
+                        @Html.ActionLink("Edit Profile", "Edit", new { id = Model.CompanyID }, new { @class = "btn btn-primary btn-sm" })
+                    </div>
+                </div>
+                <p>
+                    <span class="text-lg">
+                        @Html.DisplayFor(model => model.Name)
+                    </span>
+                </p>
+                <p>
+                    qq
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -193,15 +193,15 @@
                                     <div class="user-block-picture">
                                         <div class="user-block-status">
                                             @{
-                                                string avatar = string.Empty;
-                                                if (string.IsNullOrEmpty(Convert.ToString(Session["EPhoto"])))
-                                                {
-                                                    avatar = "~/Content/Icons/User_default.png";
-                                                }
-                                                else
-                                                {
-                                                    avatar = Convert.ToString(Session["EPhoto"]);
-                                                }
+                                                                                                string avatar = string.Empty;
+                                                                                                if (string.IsNullOrEmpty(Convert.ToString(Session["EPhoto"])))
+                                                                                                {
+                                                                                                    avatar = "~/Content/Icons/User_default.png";
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    avatar = Convert.ToString(Session["EPhoto"]);
+                                                                                                }
                                             }
                                             <img class="img-thumbnail rounded-circle" src="@Url.Content(avatar)" alt="Avatar" width="60" height="60">
                                             <div class="circle bg-success circle-lg"></div>
@@ -281,6 +281,12 @@
                             <a href="@Url.Action("Index", "Companies")" title="Companies">
                                 <em class="icon-chemistry"></em>
                                 <span data-localize="sidebar.nav.element.ELEMENTS">Companies</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="@Url.Action("Index", "Users")" title="Users">
+                                <em class="icon-chemistry"></em>
+                                <span data-localize="sidebar.nav.element.ELEMENTS">Users</span>
                             </a>
                         </li>
 

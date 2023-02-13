@@ -38,7 +38,6 @@ namespace DatabaseAccess
         [Required(ErrorMessage = "*Required")]
         public string Name { get; set; }
 
-        [DataType(DataType.ImageUrl)]
         public string Logo { get; set; }
 
         [NotMapped]
