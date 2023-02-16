@@ -9,7 +9,7 @@
         @ViewBag.Message
     </div>
     <div class="card-body">
-        @using (Html.BeginForm("RegistrationForm", "CompanyRegistration", FormMethod.Post, new { @class="example-form" }))
+        @using (Html.BeginForm("RegistrationForm", "CompanyRegistration", FormMethod.Post, new { @id = "example-form" }))
         {
             @Html.AntiForgeryToken()
             <div>
@@ -33,20 +33,36 @@
                     <small>Enter Focal Person Details</small>
                 </h4>
                 <fieldset>
-                    <label for="name">Employee name *</label>
-                    <input class="form-control required" id="Ename" name="Ename" type="text">
-                    <label for="phone">Contact № *</label>
-                    <input class="form-control required" id="EContactNo" name="EContactNo" type="text">
-                    <label for="email">Email *</label>
-                    <input class="form-control required" id="EEmail" name="EEmail" type="text">
-                    <label>CNIC</label>
-                    <input class="form-control required" id="ECNIC" name="ECNIC" type="text">
-                    <label>Designation</label>
-                    <input class="form-control required" id="EDesignation" name="EDesignation" type="text">
-                    <label>Basic Salary</label>
-                    <input class="form-control required" id="EMonthlySalary" name="EMonthlySalary" type="number">
-                    <label for="address">Address</label>
-                    <input class="form-control required" id="EAddress" name="EAddress" type="text">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="name">Employee name *</label>
+                            <input class="form-control required" id="Ename" name="Ename" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="phone">Contact № *</label>
+                            <input class="form-control required" id="EContactNo" name="EContactNo" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="email">Email *</label>
+                            <input class="form-control required" id="EEmail" name="EEmail" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label>CNIC</label>
+                            <input class="form-control required" id="ECNIC" name="ECNIC" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label>Designation</label>
+                            <input class="form-control required" id="EDesignation" name="EDesignation" type="text">
+                        </div>
+                        <div class="col-md-3">
+                            <label>Basic Salary</label>
+                            <input class="form-control required" id="EMonthlySalary" name="EMonthlySalary" type="number">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="address">Address</label>
+                            <input class="form-control required" id="EAddress" name="EAddress" type="text">
+                        </div>
+                    </div>
                     <p>(*) Mandatory</p>
                 </fieldset>
                 <h4>
@@ -78,4 +94,3 @@
         }
     </div>
 </div>
-
