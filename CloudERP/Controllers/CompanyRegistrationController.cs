@@ -14,6 +14,10 @@ namespace CloudERP.Controllers
         // GET: RegistrationForm
         public ActionResult RegistrationForm()
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View();
         }
 
@@ -26,6 +30,11 @@ namespace CloudERP.Controllers
                                              string CName, string BranchName,
                                              string BranchContact, string BranchAddress)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             try
             {
                 if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password)

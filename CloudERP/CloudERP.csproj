@@ -124,6 +124,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\CompanyRegistrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -429,6 +430,11 @@
     <Content Include="Views\CompanyRegistration\server\i18n\site-en.json" />
     <Content Include="Views\CompanyRegistration\server\i18n\site-es.json" />
     <Content Include="Views\CompanyRegistration\server\xeditable-groups.json" />
+    <Content Include="Views\Branches\Create.cshtml" />
+    <Content Include="Views\Branches\Delete.cshtml" />
+    <Content Include="Views\Branches\Details.cshtml" />
+    <Content Include="Views\Branches\Edit.cshtml" />
+    <Content Include="Views\Branches\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
