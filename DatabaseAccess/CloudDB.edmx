@@ -146,7 +146,7 @@
           <Property Name="MonthlySalary" Type="float" Nullable="false" />
           <Property Name="BranchID" Type="int" Nullable="false" />
           <Property Name="CompanyID" Type="int" Nullable="false" />
-          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" />
         </EntityType>
         <EntityType Name="tblFinancialYear">
           <Key>
@@ -1648,7 +1648,7 @@
           <Property Name="MonthlySalary" Type="Double" Nullable="false" />
           <Property Name="BranchID" Type="Int32" Nullable="false" />
           <Property Name="CompanyID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" />
           <NavigationProperty Name="tblBranch" Relationship="CloudDBModel.FK_tblEmployee_tblBranch" FromRole="tblEmployee" ToRole="tblBranch" />
           <NavigationProperty Name="tblPayroll" Relationship="CloudDBModel.FK_tblPayroll_tblEmployee" FromRole="tblEmployee" ToRole="tblPayroll" />
           <NavigationProperty Name="tblCompany" Relationship="CloudDBModel.FK_tblEmployee_tblCompany" FromRole="tblEmployee" ToRole="tblCompany" />

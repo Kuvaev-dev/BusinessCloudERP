@@ -124,9 +124,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BranchEmployeeController.cs" />
     <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\CompaniesController.cs" />
     <Compile Include="Controllers\CompanyRegistrationController.cs" />
+    <Compile Include="Controllers\HeadEmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\UserTypesController.cs" />
@@ -435,9 +437,15 @@
     <Content Include="Views\Branches\Details.cshtml" />
     <Content Include="Views\Branches\Edit.cshtml" />
     <Content Include="Views\Branches\Index.cshtml" />
+    <Content Include="Views\BranchEmployee\Employee.cshtml" />
+    <Content Include="Views\BranchEmployee\EmployeeRegistration.cshtml" />
+    <Content Include="Views\BranchEmployee\EmployeeUpdation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\EmployeePhotos\" />
+    <Folder Include="Views\EmployeeRegistration\" />
+    <Folder Include="Views\HeadEmployee\" />
     <Folder Include="Views\Registration\" />
   </ItemGroup>
   <ItemGroup>
