@@ -36,13 +36,13 @@
                         <div class="brand-logo">
                             @{
                                 string logo = string.Empty;
-                                if (string.IsNullOrEmpty(Convert.ToString(Session["Logo"])))
+                                if (string.IsNullOrEmpty(Convert.ToString(Session["CLogo"])))
                                 {
                                     logo = "~/Content/Icons/Main_logo.png";
                                 }
                                 else
                                 {
-                                    logo = Convert.ToString(Session["Logo"]);
+                                    logo = Convert.ToString(Session["CLogo"]);
                                 }
                             }
                             <img class="img-fluid" src="@Url.Content(logo)" alt="App Logo" width="30" height="30">
@@ -293,6 +293,18 @@
                             <a href="@Url.Action("RegistrationForm", "CompanyRegistration")" title="Company Registration">
                                 <em class="icon-chemistry"></em>
                                 <span data-localize="sidebar.nav.element.ELEMENTS">Company Registration</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="@Url.Action("Index", "Branches")" title="Company Branches">
+                                <em class="icon-chemistry"></em>
+                                <span data-localize="sidebar.nav.element.ELEMENTS">Company Branches</span>
+                            </a>
+                        </li>
+                        <li class=" ">
+                            <a href="@Url.Action("Employees", "CompanyEmployee")" title="Company Employee Registration">
+                                <em class="icon-chemistry"></em>
+                                <span data-localize="sidebar.nav.element.ELEMENTS">Company Employee Registration</span>
                             </a>
                         </li>
                         <li class=" ">

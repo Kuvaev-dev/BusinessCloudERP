@@ -81,9 +81,6 @@ namespace CloudERP.Controllers
                     }
                 }
 
-                db.tblEmployee.Add(employee);
-                db.SaveChanges();
-
                 return RedirectToAction("Employee");
             }
 
