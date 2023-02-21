@@ -4,10 +4,10 @@
     ViewBag.Title = "Add New Company";
 }
 
-@using (Html.BeginForm("Create", "Companies", FormMethod.Post, new { enctype="multipart/form-data" })) 
+@using (Html.BeginForm("Create", "Companies", FormMethod.Post, new { enctype="multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Company</h4>
         <hr />
@@ -24,7 +24,7 @@
             @Html.LabelFor(model => model.LogoFile, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <span class="btn btn-default btn-file">
-                    @Html.TextBoxFor(model => model.LogoFile, new { type="file" })
+                    @Html.TextBoxFor(model => model.LogoFile, new { type = "file" })
                 </span>
             </div>
         </div>

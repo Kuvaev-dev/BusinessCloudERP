@@ -1,0 +1,62 @@
+﻿@model IEnumerable<DatabaseAccess.tblCategory>
+
+@{
+    ViewBag.Title = "All Categories";
+}
+
+<script src="~/Scripts/jquery-3.6.3.js"></script>
+
+<div class="card">
+    <div class="card-flat">
+        <div class="card-header">
+            @Html.ActionLink("Add Category", "Create", null, new { @style = "float: left;", @class = "btn btn-success" })
+            <input class="form-control col-md-3" type="text" style="float: right;" id="searchbranch" name="searchcategory" placeholder="Search..." />
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                Category
+                            </th>
+                            <th>
+                                User
+                            </th>
+                            <th>
+                                Action's
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="categorieslist">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.categoryName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tblUser.FullName)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }, new { @class = "btn btn-primary" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchcategory").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#categorieslist tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
