@@ -22,7 +22,7 @@ namespace DatabaseAccess
         {
             this.tblPayroll = new HashSet<tblPayroll>();
         }
-    
+
         public int EmployeeID { get; set; }
 
         [Required(ErrorMessage = "*Required")]

@@ -60,7 +60,7 @@ namespace CloudERP.Controllers
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,EmployeeID,UserTypeID,FullName,Email,ContactNo,UserName,Password,IsActive")] tblUser tblUser)
+        public ActionResult Create(tblUser tblUser)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
@@ -102,7 +102,7 @@ namespace CloudERP.Controllers
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,EmployeeID,UserTypeID,FullName,Email,ContactNo,UserName,Password,IsActive")] tblUser tblUser)
+        public ActionResult Edit(tblUser tblUser)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {

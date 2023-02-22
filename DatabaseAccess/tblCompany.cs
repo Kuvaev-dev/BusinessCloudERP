@@ -31,7 +31,7 @@ namespace DatabaseAccess
             this.tblSupplier = new HashSet<tblSupplier>();
             this.tblSupplierInvoice = new HashSet<tblSupplierInvoice>();
         }
-    
+
         public int CompanyID { get; set; }
 
         [Required(ErrorMessage = "*Required")]

@@ -20,12 +20,12 @@ namespace DatabaseAccess
         {
             this.tblUser = new HashSet<tblUser>();
         }
-    
+
         public int UserTypeID { get; set; }
 
         [Required(ErrorMessage = "*Required")]
         public string UserType { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblUser> tblUser { get; set; }
     }

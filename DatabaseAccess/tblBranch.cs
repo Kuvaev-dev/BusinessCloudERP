@@ -30,7 +30,7 @@ namespace DatabaseAccess
             this.tblSupplier = new HashSet<tblSupplier>();
             this.tblSupplierInvoice = new HashSet<tblSupplierInvoice>();
         }
-    
+
         public int BranchID { get; set; }
 
         [Required(ErrorMessage = "*Required")]
@@ -50,7 +50,7 @@ namespace DatabaseAccess
 
         [Required(ErrorMessage = "*Required")]
         public Nullable<int> BrchID { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAccountControl> tblAccountControl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
