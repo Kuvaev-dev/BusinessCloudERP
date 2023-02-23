@@ -124,6 +124,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountControlsController.cs" />
+    <Compile Include="Controllers\AccountHeadsController.cs" />
+    <Compile Include="Controllers\AccountSubControlsController.cs" />
     <Compile Include="Controllers\BranchEmployeeController.cs" />
     <Compile Include="Controllers\BranchesController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
@@ -463,6 +466,21 @@
     <Content Include="Views\Stocks\Details.cshtml" />
     <Content Include="Views\Stocks\Edit.cshtml" />
     <Content Include="Views\Stocks\Index.cshtml" />
+    <Content Include="Views\AccountHeads\Create.cshtml" />
+    <Content Include="Views\AccountHeads\Delete.cshtml" />
+    <Content Include="Views\AccountHeads\Details.cshtml" />
+    <Content Include="Views\AccountHeads\Edit.cshtml" />
+    <Content Include="Views\AccountHeads\Index.cshtml" />
+    <Content Include="Views\AccountControls\Create.cshtml" />
+    <Content Include="Views\AccountControls\Delete.cshtml" />
+    <Content Include="Views\AccountControls\Details.cshtml" />
+    <Content Include="Views\AccountControls\Edit.cshtml" />
+    <Content Include="Views\AccountControls\Index.cshtml" />
+    <Content Include="Views\AccountSubControls\Create.cshtml" />
+    <Content Include="Views\AccountSubControls\Delete.cshtml" />
+    <Content Include="Views\AccountSubControls\Details.cshtml" />
+    <Content Include="Views\AccountSubControls\Edit.cshtml" />
+    <Content Include="Views\AccountSubControls\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

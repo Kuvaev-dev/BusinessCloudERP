@@ -4,10 +4,11 @@
     ViewBag.Title = "Create";
 }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+    <h4>New Branch</h4>
+    <hr />
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -17,7 +18,7 @@
                 @Html.ValidationMessageFor(model => model.BrchID, "", new { @class = "text-danger" })
             </div>
         </div>
-        
+
         <div class="form-group">
             @Html.LabelFor(model => model.BranchTypeID, "Branch Level", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
@@ -55,7 +56,7 @@
                 <div class="row ml-1">
                     <input type="submit" value="Create" class="btn btn-success" />
                     <div class="ml-3 mt-2">
-                        @Html.ActionLink("All Branches", "Index", new { @class = "btn btn-default" })
+                        @Html.ActionLink("All Branches", "Index", null, new { @class = "btn btn-default" })
                     </div>
                 </div>
             </div>
