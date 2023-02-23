@@ -1,0 +1,87 @@
+﻿@model IEnumerable<DatabaseAccess.tblStock>
+
+@{
+    ViewBag.Title = "Stock Details";
+}
+
+<script src="~/Scripts/jquery-3.6.3.js"></script>
+
+<div class="card">
+    <div class="card-flat">
+        <div class="card-header">
+            @Html.ActionLink("Add Product", "Create", null, new { @style = "float: left;", @class = "btn btn-success" })
+            <input class="form-control col-md-3" type="text" style="float: right;" id="searchproduct" name="searchproduct" placeholder="Search..." />
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                Category
+                            </th>
+                            <th>
+                                Item's
+                            </th>
+                            <th>
+                                Current Quantity
+                            </th>
+                            <th>
+                                Expiry Date
+                            </th>
+                            <th>
+                                Manufacture Date
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Action's
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="productslist">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tblCategory.categoryName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Quantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ExpiryDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Manufacture)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsActive)
+                                </td>
+                                <td class="btn-group">
+                                    @Html.ActionLink("Update", "Edit", new { id = item.ProductID }, new { @class="btn btn-primary" })
+                                    @Html.ActionLink("Item Detail", "Details", new { id = item.ProductID }, new { @class="btn btn-info" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchproduct").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#productslist tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
