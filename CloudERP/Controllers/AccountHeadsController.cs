@@ -63,6 +63,11 @@ namespace CloudERP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(tblAccountHead tblAccountHead)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             int companyID = 0;
             int branchID = 0;
             int userID = 0;
@@ -107,7 +112,7 @@ namespace CloudERP.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserID = new SelectList(db.tblUser, "UserID", "FullName", tblAccountHead.UserID);
+
             return View(tblAccountHead);
         }
 
@@ -118,13 +123,33 @@ namespace CloudERP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "AccountHeadID,CompanyID,BranchID,AccountHeadName,Code,UserID")] tblAccountHead tblAccountHead)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            int userID = 0;
+            userID = Convert.ToInt32(Convert.ToString(Session["UserID"]));
+            tblAccountHead.UserID = userID;
+
             if (ModelState.IsValid)
             {
-                db.Entry(tblAccountHead).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var findHead = db.tblAccountHead.Where(a => a.CompanyID == tblAccountHead.CompanyID
+                                                         && a.BranchID == tblAccountHead.BranchID
+                                                         && a.AccountHeadName == tblAccountHead.AccountHeadName
+                                                         && a.AccountHeadID != tblAccountHead.AccountHeadID).FirstOrDefault();
+                if (findHead == null)
+                {
+                    db.Entry(tblAccountHead).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = "Already Exist";
+                }
             }
-            ViewBag.UserID = new SelectList(db.tblUser, "UserID", "FullName", tblAccountHead.UserID);
+
             return View(tblAccountHead);
         }
 

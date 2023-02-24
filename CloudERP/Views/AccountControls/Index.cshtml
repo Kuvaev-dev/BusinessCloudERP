@@ -1,57 +1,49 @@
 ﻿@model IEnumerable<DatabaseAccess.tblAccountControl>
 
+@using DatabaseAccess;
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Account Controls";
 }
 
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Account Control", "Create", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AccountHeadID)
+            Account Head
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AccountControlName)
+            Account Control
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tblBranch.BranchName)
+            User
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tblUser.FullName)
+            Action's
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tblCompany.Name)
-        </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccountHeadID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccountControlName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tblBranch.BranchName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tblUser.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tblCompany.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AccountControlID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.AccountControlID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AccountControlID })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{
+                    var headID = item.AccountHeadID;
+                    var headName = (new CloudDBEntities()).tblAccountHead.Find(item.AccountHeadID).AccountHeadName;
+                    Html.Display(headName);
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountControlName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tblUser.FullName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AccountControlID }, new { @class="btn btn-primary" })
+            </td>
+        </tr>
+    }
 </table>

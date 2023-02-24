@@ -17,7 +17,21 @@ namespace CloudERP.Controllers
         // GET: AccountControls
         public ActionResult Index()
         {
-            var tblAccountControl = db.tblAccountControl.Include(t => t.tblBranch).Include(t => t.tblUser).Include(t => t.tblCompany);
+            if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            int companyID = 0;
+            int branchID = 0;
+            int userID = 0;
+
+            companyID = Convert.ToInt32(Convert.ToString(Session["CompanyID"]));
+            branchID = Convert.ToInt32(Convert.ToString(Session["BranchID"]));
+            userID = Convert.ToInt32(Convert.ToString(Session["UserID"]));
+
+            var tblAccountControl = db.tblAccountControl.Include(t => t.tblBranch).Include(t => t.tblUser).Include(t => t.tblCompany)
+                                                        .Where(a => a.CompanyID == companyID && a.BranchID == branchID);
             return View(tblAccountControl.ToList());
         }
 
@@ -39,9 +53,7 @@ namespace CloudERP.Controllers
         // GET: AccountControls/Create
         public ActionResult Create()
         {
-            ViewBag.BranchID = new SelectList(db.tblBranch, "BranchID", "BranchName");
-            ViewBag.UserID = new SelectList(db.tblUser, "UserID", "FullName");
-            ViewBag.CompanyID = new SelectList(db.tblCompany, "CompanyID", "Name");
+            ViewBag.AccountHeadID = new SelectList(db.tblAccountHead, "AccountHeadID", "AccountHeadName");
             return View();
         }
 
@@ -50,18 +62,43 @@ namespace CloudERP.Controllers
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AccountControlID,CompanyID,BranchID,AccountHeadID,AccountControlName,UserID")] tblAccountControl tblAccountControl)
+        public ActionResult Create(tblAccountControl tblAccountControl)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
-                db.tblAccountControl.Add(tblAccountControl);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Login", "Home");
             }
 
-            ViewBag.BranchID = new SelectList(db.tblBranch, "BranchID", "BranchName", tblAccountControl.BranchID);
-            ViewBag.UserID = new SelectList(db.tblUser, "UserID", "FullName", tblAccountControl.UserID);
-            ViewBag.CompanyID = new SelectList(db.tblCompany, "CompanyID", "Name", tblAccountControl.CompanyID);
+            int companyID = 0;
+            int branchID = 0;
+            int userID = 0;
+
+            companyID = Convert.ToInt32(Convert.ToString(Session["CompanyID"]));
+            branchID = Convert.ToInt32(Convert.ToString(Session["BranchID"]));
+            userID = Convert.ToInt32(Convert.ToString(Session["UserID"]));
+
+            tblAccountControl.BranchID = branchID;
+            tblAccountControl.CompanyID = companyID;
+            tblAccountControl.UserID = userID;
+
+            if (ModelState.IsValid)
+            {
+                var findControls = db.tblAccountControl.Where(a => a.CompanyID == companyID
+                                                                && a.BranchID == branchID
+                                                                && a.AccountControlName == tblAccountControl.AccountControlName).FirstOrDefault();
+                if (findControls == null)
+                {
+                    db.tblAccountControl.Add(tblAccountControl);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = "Already Exist";
+                }
+            }
+
+            ViewBag.AccountHeadID = new SelectList(db.tblAccountHead, "AccountHeadID", "AccountHeadName", tblAccountControl.AccountHeadID);
             return View(tblAccountControl);
         }
 
@@ -77,9 +114,8 @@ namespace CloudERP.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BranchID = new SelectList(db.tblBranch, "BranchID", "BranchName", tblAccountControl.BranchID);
-            ViewBag.UserID = new SelectList(db.tblUser, "UserID", "FullName", tblAccountControl.UserID);
-            ViewBag.CompanyID = new SelectList(db.tblCompany, "CompanyID", "Name", tblAccountControl.CompanyID);
+
+            ViewBag.AccountHeadID = new SelectList(db.tblAccountHead, "AccountHeadID", "AccountHeadName", tblAccountControl.AccountHeadID);
             return View(tblAccountControl);
         }
 
@@ -88,17 +124,36 @@ namespace CloudERP.Controllers
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccountControlID,CompanyID,BranchID,AccountHeadID,AccountControlName,UserID")] tblAccountControl tblAccountControl)
+        public ActionResult Edit(tblAccountControl tblAccountControl)
         {
+            if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            int userID = 0;
+            userID = Convert.ToInt32(Convert.ToString(Session["UserID"]));
+            tblAccountControl.UserID = userID;
+
             if (ModelState.IsValid)
             {
-                db.Entry(tblAccountControl).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var findControls = db.tblAccountControl.Where(a => a.CompanyID == tblAccountControl.CompanyID
+                                                                && a.BranchID == tblAccountControl.BranchID
+                                                                && a.AccountControlName == tblAccountControl.AccountControlName
+                                                                && a.AccountControlID != tblAccountControl.AccountControlID).FirstOrDefault();
+                if (findControls == null)
+                {
+                    db.Entry(tblAccountControl).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = "Already Exist";
+                }
             }
-            ViewBag.BranchID = new SelectList(db.tblBranch, "BranchID", "BranchName", tblAccountControl.BranchID);
-            ViewBag.UserID = new SelectList(db.tblUser, "UserID", "FullName", tblAccountControl.UserID);
-            ViewBag.CompanyID = new SelectList(db.tblCompany, "CompanyID", "Name", tblAccountControl.CompanyID);
+
+            ViewBag.AccountHeadID = new SelectList(db.tblAccountHead, "AccountHeadID", "AccountHeadName", tblAccountControl.AccountHeadID);
             return View(tblAccountControl);
         }
 
