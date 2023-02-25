@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CloudERP.Models;
 using DatabaseAccess;
 
 namespace CloudERP.Controllers
@@ -13,10 +14,13 @@ namespace CloudERP.Controllers
     public class AccountControlsController : Controller
     {
         private CloudDBEntities db = new CloudDBEntities();
+        private List<AccountControlMV> accountControls = new List<AccountControlMV>();
 
         // GET: AccountControls
         public ActionResult Index()
         {
+            accountControls.Clear();
+
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
                 return RedirectToAction("Login", "Home");
@@ -30,24 +34,27 @@ namespace CloudERP.Controllers
             branchID = Convert.ToInt32(Convert.ToString(Session["BranchID"]));
             userID = Convert.ToInt32(Convert.ToString(Session["UserID"]));
 
-            var tblAccountControl = db.tblAccountControl.Include(t => t.tblBranch).Include(t => t.tblUser).Include(t => t.tblCompany)
-                                                        .Where(a => a.CompanyID == companyID && a.BranchID == branchID);
-            return View(tblAccountControl.ToList());
-        }
+            var tblAccountControls = db.tblAccountControl.Include(t => t.tblBranch).Include(t => t.tblUser).Include(t => t.tblCompany)
+                                                         .Where(a => a.CompanyID == companyID && a.BranchID == branchID);
 
-        // GET: AccountControls/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
+            foreach (var item in tblAccountControls)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                accountControls.Add(new AccountControlMV
+                {
+                    AccountControlID = item.AccountControlID,
+                    AccountControlName = item.AccountControlName,
+                    AccountHeadID = item.AccountHeadID,
+                    AccountHeadName = db.tblAccountHead.Find(item.AccountHeadID).AccountHeadName,
+                    BranchID = item.BranchID,
+                    BranchName = item.tblBranch.BranchName,
+                    CompanyID = item.CompanyID,
+                    Name = item.tblCompany.Name, 
+                    UserID = item.UserID,
+                    UserName = item.tblUser.UserName
+                });
             }
-            tblAccountControl tblAccountControl = db.tblAccountControl.Find(id);
-            if (tblAccountControl == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tblAccountControl);
+
+            return View(accountControls.ToList());
         }
 
         // GET: AccountControls/Create
@@ -64,6 +71,8 @@ namespace CloudERP.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(tblAccountControl tblAccountControl)
         {
+            accountControls.Clear();
+
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
                 return RedirectToAction("Login", "Home");
@@ -155,32 +164,6 @@ namespace CloudERP.Controllers
 
             ViewBag.AccountHeadID = new SelectList(db.tblAccountHead, "AccountHeadID", "AccountHeadName", tblAccountControl.AccountHeadID);
             return View(tblAccountControl);
-        }
-
-        // GET: AccountControls/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tblAccountControl tblAccountControl = db.tblAccountControl.Find(id);
-            if (tblAccountControl == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tblAccountControl);
-        }
-
-        // POST: AccountControls/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tblAccountControl tblAccountControl = db.tblAccountControl.Find(id);
-            db.tblAccountControl.Remove(tblAccountControl);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

@@ -144,6 +144,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\FileHelper.cs" />
+    <Compile Include="Helpers\ComboHelper.cs" />
+    <Compile Include="Models\AccountControlMV.cs" />
     <Compile Include="Models\CompanyRegistrationMV.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -466,21 +468,19 @@
     <Content Include="Views\Stocks\Details.cshtml" />
     <Content Include="Views\Stocks\Edit.cshtml" />
     <Content Include="Views\Stocks\Index.cshtml" />
-    <Content Include="Views\AccountHeads\Create.cshtml" />
-    <Content Include="Views\AccountHeads\Delete.cshtml" />
-    <Content Include="Views\AccountHeads\Details.cshtml" />
-    <Content Include="Views\AccountHeads\Edit.cshtml" />
-    <Content Include="Views\AccountHeads\Index.cshtml" />
     <Content Include="Views\AccountControls\Create.cshtml" />
     <Content Include="Views\AccountControls\Delete.cshtml" />
     <Content Include="Views\AccountControls\Details.cshtml" />
     <Content Include="Views\AccountControls\Edit.cshtml" />
     <Content Include="Views\AccountControls\Index.cshtml" />
     <Content Include="Views\AccountSubControls\Create.cshtml" />
-    <Content Include="Views\AccountSubControls\Delete.cshtml" />
-    <Content Include="Views\AccountSubControls\Details.cshtml" />
     <Content Include="Views\AccountSubControls\Edit.cshtml" />
     <Content Include="Views\AccountSubControls\Index.cshtml" />
+    <Content Include="Views\AccountHeads\Create.cshtml" />
+    <Content Include="Views\AccountHeads\Delete.cshtml" />
+    <Content Include="Views\AccountHeads\Details.cshtml" />
+    <Content Include="Views\AccountHeads\Edit.cshtml" />
+    <Content Include="Views\AccountHeads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,49 +1,68 @@
-﻿@model IEnumerable<DatabaseAccess.tblAccountControl>
-
-@using DatabaseAccess;
+﻿@model IEnumerable<CloudERP.Models.AccountControlMV>
 
 @{
     ViewBag.Title = "Account Controls";
 }
 
-<p>
-    @Html.ActionLink("New Account Control", "Create", null, new { @class = "btn btn-success" })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Account Head
-        </th>
-        <th>
-            Account Control
-        </th>
-        <th>
-            User
-        </th>
-        <th>
-            Action's
-        </th>
-    </tr>
+<script src="~/Scripts/jquery-3.6.3.js"></script>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @{
-                    var headID = item.AccountHeadID;
-                    var headName = (new CloudDBEntities()).tblAccountHead.Find(item.AccountHeadID).AccountHeadName;
-                    Html.Display(headName);
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AccountControlName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tblUser.FullName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AccountControlID }, new { @class="btn btn-primary" })
-            </td>
-        </tr>
-    }
-</table>
+<div class="card">
+    <div class="card-flat">
+        <div class="card-header">
+            @Html.ActionLink("New Account Control", "Create", null, new { @style = "float: left;", @class = "btn btn-success" })
+            <input class="form-control col-md-3" type="text" style="float: right;" id="searchaccountcontrol" name="searchaccountcontrol" placeholder="Search..." />
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                Account Head
+                            </th>
+                            <th>
+                                Account Control
+                            </th>
+                            <th>
+                                User
+                            </th>
+                            <th>
+                                Action's
+                            </th>
+                        </tr>
+                        </thead>
+                    <tbody id="accountcontrolslist">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccountHeadName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccountControlName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.AccountControlID }, new { @class = "btn btn-primary" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchaccountcontrol").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#accountcontrolslist tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
