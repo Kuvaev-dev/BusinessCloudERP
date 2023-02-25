@@ -121,7 +121,7 @@ namespace CloudERP.Controllers
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AccountHeadID,CompanyID,BranchID,AccountHeadName,Code,UserID")] tblAccountHead tblAccountHead)
+        public ActionResult Edit(tblAccountHead tblAccountHead)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
