@@ -275,12 +275,11 @@
                                     </li>
 
                                     <!-- Configuration -->
-                                    <li class="nav-heading ">
-                                        <span data-localize="sidebar.heading.COMPONENTS">User Setting</span>
-                                    </li>
-
                                     if (userType == 1)  // Admin
                                     {
+                                        <li class="nav-heading ">
+                                            <span data-localize="sidebar.heading.COMPONENTS">User Setting</span>
+                                        </li>
                                         <li class=" ">
                                             <a href="@Url.Action("Index", "UserTypes")" title="User Types">
                                                 <em class="icon-chemistry"></em>
@@ -292,6 +291,9 @@
                                                 <em class="icon-chemistry"></em>
                                                 <span data-localize="sidebar.nav.element.ELEMENTS">Users</span>
                                             </a>
+                                        </li>
+                                        <li class="nav-heading ">
+                                            <span data-localize="sidebar.heading.COMPONENTS">Companies</span>
                                         </li>
                                         <li class=" ">
                                             <a href="@Url.Action("Index", "Companies")" title="Companies">
@@ -312,10 +314,19 @@
                                         var branchTypeID = Convert.ToInt32(Convert.ToString(Session["BranchTypeID"]));
                                         if (branchTypeID == 1) // Head Office
                                         {
+                                            <li class="nav-heading ">
+                                                <span data-localize="sidebar.heading.COMPONENTS">Branches</span>
+                                            </li>
                                             <li class=" ">
                                                 <a href="@Url.Action("Index", "Branches")" title="Branches">
                                                     <em class="icon-chemistry"></em>
                                                     <span data-localize="sidebar.nav.element.ELEMENTS">Branches</span>
+                                                </a>
+                                            </li>
+                                            <li class=" ">
+                                                <a href="@Url.Action("Create", "Branches")" title="New Branch">
+                                                    <em class="icon-chemistry"></em>
+                                                    <span data-localize="sidebar.nav.element.ELEMENTS">New Branch</span>
                                                 </a>
                                             </li>
                                             <li class=" ">
@@ -328,6 +339,9 @@
 
                                         if (branchTypeID > 1)
                                         {
+                                            <li class="nav-heading ">
+                                                <span data-localize="sidebar.heading.COMPONENTS">Employees</span>
+                                            </li>
                                             <li class=" ">
                                                 <a href="@Url.Action("Employee", "BranchEmployee")" title="Employee Registration">
                                                     <em class="icon-chemistry"></em>
@@ -336,6 +350,9 @@
                                             </li>
                                         }
 
+                                        <li class="nav-heading ">
+                                            <span data-localize="sidebar.heading.COMPONENTS">Stock</span>
+                                        </li>
                                         <li class=" ">
                                             <a href="@Url.Action("Index", "Categories")" title="Stock Categories">
                                                 <em class="icon-chemistry"></em>
@@ -347,6 +364,10 @@
                                                 <em class="icon-chemistry"></em>
                                                 <span data-localize="sidebar.nav.element.ELEMENTS">Stock Details</span>
                                             </a>
+                                        </li>
+
+                                        <li class="nav-heading ">
+                                            <span data-localize="sidebar.heading.COMPONENTS">Account Setting</span>
                                         </li>
                                         <li class=" ">
                                             <a href="@Url.Action("Index", "AccountHeads")" title="Account Heads">
