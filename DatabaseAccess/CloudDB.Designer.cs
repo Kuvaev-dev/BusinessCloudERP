@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "D:\Business ERP\CloudERP\DatabaseAccess\CloudDB.edmx" включено. 
+﻿// Создание кода T4 для модели "D:\Cloud ERP\Project\BusinessCloudERP\DatabaseAccess\CloudDB.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

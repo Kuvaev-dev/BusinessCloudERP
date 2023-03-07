@@ -81,8 +81,8 @@
             <PropertyRef Name="CustomerID" />
           </Key>
           <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Customername" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="CustomerContact" Type="int" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CustomerContact" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="CustomerArea" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CustomerAddress" Type="varchar" MaxLength="300" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="300" Nullable="false" />
@@ -1231,7 +1231,6 @@
           <EntitySet Name="tblBranch" EntityType="CloudDBModel.tblBranch" />
           <EntitySet Name="tblBranchType" EntityType="CloudDBModel.tblBranchType" />
           <EntitySet Name="tblCategory" EntityType="CloudDBModel.tblCategory" />
-          <EntitySet Name="tblCustomer" EntityType="CloudDBModel.tblCustomer" />
           <EntitySet Name="tblCustomerInvoice" EntityType="CloudDBModel.tblCustomerInvoice" />
           <EntitySet Name="tblCustomerInvoiceDetail" EntityType="CloudDBModel.tblCustomerInvoiceDetail" />
           <EntitySet Name="tblCustomerPayment" EntityType="CloudDBModel.tblCustomerPayment" />
@@ -1285,10 +1284,6 @@
             <End Role="tblBranch" EntitySet="tblBranch" />
             <End Role="tblCategory" EntitySet="tblCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblCustomer_tblBranch" Association="CloudDBModel.FK_tblCustomer_tblBranch">
-            <End Role="tblBranch" EntitySet="tblBranch" />
-            <End Role="tblCustomer" EntitySet="tblCustomer" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblCustomerInvoice_tblBranch" Association="CloudDBModel.FK_tblCustomerInvoice_tblBranch">
             <End Role="tblBranch" EntitySet="tblBranch" />
             <End Role="tblCustomerInvoice" EntitySet="tblCustomerInvoice" />
@@ -1320,10 +1315,6 @@
           <AssociationSet Name="FK_tblStock_tblCategory" Association="CloudDBModel.FK_tblStock_tblCategory">
             <End Role="tblCategory" EntitySet="tblCategory" />
             <End Role="tblStock" EntitySet="tblStock" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblCustomerInvoice_tblCustomer" Association="CloudDBModel.FK_tblCustomerInvoice_tblCustomer">
-            <End Role="tblCustomer" EntitySet="tblCustomer" />
-            <End Role="tblCustomerInvoice" EntitySet="tblCustomerInvoice" />
           </AssociationSet>
           <AssociationSet Name="FK_tblCustomerInvoiceDetail_tblCustomerInvoice" Association="CloudDBModel.FK_tblCustomerInvoiceDetail_tblCustomerInvoice">
             <End Role="tblCustomerInvoice" EntitySet="tblCustomerInvoice" />
@@ -1382,10 +1373,6 @@
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblCategory" EntitySet="tblCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblCustomer_tblUser" Association="CloudDBModel.FK_tblCustomer_tblUser">
-            <End Role="tblUser" EntitySet="tblUser" />
-            <End Role="tblCustomer" EntitySet="tblCustomer" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblCustomerInvoice_tblUser" Association="CloudDBModel.FK_tblCustomerInvoice_tblUser">
             <End Role="tblUser" EntitySet="tblUser" />
             <End Role="tblCustomerInvoice" EntitySet="tblCustomerInvoice" />
@@ -1435,10 +1422,6 @@
             <End Role="tblCompany" EntitySet="tblCompany" />
             <End Role="tblCategory" EntitySet="tblCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblCustomer_tblCompany" Association="CloudDBModel.FK_tblCustomer_tblCompany">
-            <End Role="tblCompany" EntitySet="tblCompany" />
-            <End Role="tblCustomer" EntitySet="tblCustomer" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblCustomerInvoice_tblCompany" Association="CloudDBModel.FK_tblCustomerInvoice_tblCompany">
             <End Role="tblCompany" EntitySet="tblCompany" />
             <End Role="tblCustomerInvoice" EntitySet="tblCustomerInvoice" />
@@ -1466,6 +1449,23 @@
           <AssociationSet Name="FK_tblSupplierInvoiceTable_tblCompany" Association="CloudDBModel.FK_tblSupplierInvoiceTable_tblCompany">
             <End Role="tblCompany" EntitySet="tblCompany" />
             <End Role="tblSupplierInvoice" EntitySet="tblSupplierInvoice" />
+          </AssociationSet>
+          <EntitySet Name="tblCustomer" EntityType="CloudDBModel.tblCustomer" />
+          <AssociationSet Name="FK_tblCustomer_tblBranch" Association="CloudDBModel.FK_tblCustomer_tblBranch">
+            <End Role="tblBranch" EntitySet="tblBranch" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblCompany" Association="CloudDBModel.FK_tblCustomer_tblCompany">
+            <End Role="tblCompany" EntitySet="tblCompany" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomer_tblUser" Association="CloudDBModel.FK_tblCustomer_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomerInvoice_tblCustomer" Association="CloudDBModel.FK_tblCustomerInvoice_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblCustomerInvoice" EntitySet="tblCustomerInvoice" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblAccountControl">
@@ -1531,7 +1531,6 @@
           <NavigationProperty Name="tblAccountSubControl" Relationship="CloudDBModel.FK_tblAccountSubControl_tblBranch" FromRole="tblBranch" ToRole="tblAccountSubControl" />
           <NavigationProperty Name="tblBranchType" Relationship="CloudDBModel.FK_tblBranch_tblBranchType" FromRole="tblBranch" ToRole="tblBranchType" />
           <NavigationProperty Name="tblCategory" Relationship="CloudDBModel.FK_tblCategory_tblBranch" FromRole="tblBranch" ToRole="tblCategory" />
-          <NavigationProperty Name="tblCustomer" Relationship="CloudDBModel.FK_tblCustomer_tblBranch" FromRole="tblBranch" ToRole="tblCustomer" />
           <NavigationProperty Name="tblCustomerInvoice" Relationship="CloudDBModel.FK_tblCustomerInvoice_tblBranch" FromRole="tblBranch" ToRole="tblCustomerInvoice" />
           <NavigationProperty Name="tblCustomerPayment" Relationship="CloudDBModel.FK_tblCustomerPayment_tblBranch" FromRole="tblBranch" ToRole="tblCustomerPayment" />
           <NavigationProperty Name="tblEmployee" Relationship="CloudDBModel.FK_tblEmployee_tblBranch" FromRole="tblBranch" ToRole="tblEmployee" />
@@ -1539,6 +1538,7 @@
           <NavigationProperty Name="tblStock" Relationship="CloudDBModel.FK_tblStock_tblBranch" FromRole="tblBranch" ToRole="tblStock" />
           <NavigationProperty Name="tblSupplier" Relationship="CloudDBModel.FK_tblSupplier_tblBranch" FromRole="tblBranch" ToRole="tblSupplier" />
           <NavigationProperty Name="tblSupplierInvoice" Relationship="CloudDBModel.FK_tblSupplierInvoiceTable_tblBranch" FromRole="tblBranch" ToRole="tblSupplierInvoice" />
+          <NavigationProperty Name="tblCustomer" Relationship="CloudDBModel.FK_tblCustomer_tblBranch" FromRole="tblBranch" ToRole="tblCustomer" />
         </EntityType>
         <EntityType Name="tblBranchType">
           <Key>
@@ -1562,24 +1562,6 @@
           <NavigationProperty Name="tblUser" Relationship="CloudDBModel.FK_tblCategory_tblUser" FromRole="tblCategory" ToRole="tblUser" />
           <NavigationProperty Name="tblCompany" Relationship="CloudDBModel.FK_tblCategory_tblCompany" FromRole="tblCategory" ToRole="tblCompany" />
         </EntityType>
-        <EntityType Name="tblCustomer">
-          <Key>
-            <PropertyRef Name="CustomerID" />
-          </Key>
-          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Customername" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerContact" Type="Int32" Nullable="false" />
-          <Property Name="CustomerArea" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerAddress" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="BranchID" Type="Int32" Nullable="false" />
-          <Property Name="CompanyID" Type="Int32" Nullable="false" />
-          <Property Name="UserID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblBranch" Relationship="CloudDBModel.FK_tblCustomer_tblBranch" FromRole="tblCustomer" ToRole="tblBranch" />
-          <NavigationProperty Name="tblCustomerInvoice" Relationship="CloudDBModel.FK_tblCustomerInvoice_tblCustomer" FromRole="tblCustomer" ToRole="tblCustomerInvoice" />
-          <NavigationProperty Name="tblUser" Relationship="CloudDBModel.FK_tblCustomer_tblUser" FromRole="tblCustomer" ToRole="tblUser" />
-          <NavigationProperty Name="tblCompany" Relationship="CloudDBModel.FK_tblCustomer_tblCompany" FromRole="tblCustomer" ToRole="tblCompany" />
-        </EntityType>
         <EntityType Name="tblCustomerInvoice">
           <Key>
             <PropertyRef Name="CustomerInvoiceID" />
@@ -1595,11 +1577,11 @@
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="UserID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblBranch" Relationship="CloudDBModel.FK_tblCustomerInvoice_tblBranch" FromRole="tblCustomerInvoice" ToRole="tblBranch" />
-          <NavigationProperty Name="tblCustomer" Relationship="CloudDBModel.FK_tblCustomerInvoice_tblCustomer" FromRole="tblCustomerInvoice" ToRole="tblCustomer" />
           <NavigationProperty Name="tblCustomerInvoiceDetail" Relationship="CloudDBModel.FK_tblCustomerInvoiceDetail_tblCustomerInvoice" FromRole="tblCustomerInvoice" ToRole="tblCustomerInvoiceDetail" />
           <NavigationProperty Name="tblCustomerPayment" Relationship="CloudDBModel.FK_tblCustomerPayment_tblCustomerInvoice" FromRole="tblCustomerInvoice" ToRole="tblCustomerPayment" />
           <NavigationProperty Name="tblUser" Relationship="CloudDBModel.FK_tblCustomerInvoice_tblUser" FromRole="tblCustomerInvoice" ToRole="tblUser" />
           <NavigationProperty Name="tblCompany" Relationship="CloudDBModel.FK_tblCustomerInvoice_tblCompany" FromRole="tblCustomerInvoice" ToRole="tblCompany" />
+          <NavigationProperty Name="tblCustomer" Relationship="CloudDBModel.FK_tblCustomerInvoice_tblCustomer" FromRole="tblCustomerInvoice" ToRole="tblCustomer" />
         </EntityType>
         <EntityType Name="tblCustomerInvoiceDetail">
           <Key>
@@ -1939,18 +1921,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblCustomer_tblBranch">
-          <End Type="CloudDBModel.tblBranch" Role="tblBranch" Multiplicity="1" />
-          <End Type="CloudDBModel.tblCustomer" Role="tblCustomer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblBranch">
-              <PropertyRef Name="BranchID" />
-            </Principal>
-            <Dependent Role="tblCustomer">
-              <PropertyRef Name="BranchID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblCustomerInvoice_tblBranch">
           <End Type="CloudDBModel.tblBranch" Role="tblBranch" Multiplicity="1" />
           <End Type="CloudDBModel.tblCustomerInvoice" Role="tblCustomerInvoice" Multiplicity="*" />
@@ -2048,20 +2018,6 @@
             </Principal>
             <Dependent Role="tblStock">
               <PropertyRef Name="CategoryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblCustomerInvoice_tblCustomer">
-          <End Type="CloudDBModel.tblCustomer" Role="tblCustomer" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="CloudDBModel.tblCustomerInvoice" Role="tblCustomerInvoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCustomer">
-              <PropertyRef Name="CustomerID" />
-            </Principal>
-            <Dependent Role="tblCustomerInvoice">
-              <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2219,7 +2175,6 @@
           <NavigationProperty Name="tblAccountHead" Relationship="CloudDBModel.FK_tblAccountHead_tblUser" FromRole="tblUser" ToRole="tblAccountHead" />
           <NavigationProperty Name="tblAccountSubControl" Relationship="CloudDBModel.FK_tblAccountSubControl_tblUser" FromRole="tblUser" ToRole="tblAccountSubControl" />
           <NavigationProperty Name="tblCategory" Relationship="CloudDBModel.FK_tblCategory_tblUser" FromRole="tblUser" ToRole="tblCategory" />
-          <NavigationProperty Name="tblCustomer" Relationship="CloudDBModel.FK_tblCustomer_tblUser" FromRole="tblUser" ToRole="tblCustomer" />
           <NavigationProperty Name="tblCustomerInvoice" Relationship="CloudDBModel.FK_tblCustomerInvoice_tblUser" FromRole="tblUser" ToRole="tblCustomerInvoice" />
           <NavigationProperty Name="tblCustomerPayment" Relationship="CloudDBModel.FK_tblCustomerPayment_tblUser" FromRole="tblUser" ToRole="tblCustomerPayment" />
           <NavigationProperty Name="tblFinancialYear" Relationship="CloudDBModel.FK_tblFinancialYear_tblUser" FromRole="tblUser" ToRole="tblFinancialYear" />
@@ -2230,6 +2185,7 @@
           <NavigationProperty Name="tblSupplierPayment" Relationship="CloudDBModel.FK_tblSupplierPayment_tblUser" FromRole="tblUser" ToRole="tblSupplierPayment" />
           <NavigationProperty Name="tblTransaction" Relationship="CloudDBModel.FK_tblTransaction_tblUser" FromRole="tblUser" ToRole="tblTransaction" />
           <NavigationProperty Name="tblUserType" Relationship="CloudDBModel.FK_tblUser_tblUserType" FromRole="tblUser" ToRole="tblUserType" />
+          <NavigationProperty Name="tblCustomer" Relationship="CloudDBModel.FK_tblCustomer_tblUser" FromRole="tblUser" ToRole="tblCustomer" />
         </EntityType>
         <Association Name="FK_tblAccountControl_tblUser">
           <End Type="CloudDBModel.tblUser" Role="tblUser" Multiplicity="1" />
@@ -2275,18 +2231,6 @@
               <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="tblCategory">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblCustomer_tblUser">
-          <End Type="CloudDBModel.tblUser" Role="tblUser" Multiplicity="1" />
-          <End Type="CloudDBModel.tblCustomer" Role="tblCustomer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUser">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="tblCustomer">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2420,7 +2364,6 @@
           <Property Name="Logo" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblAccountControl" Relationship="CloudDBModel.FK_tblAccountControl_tblCompany" FromRole="tblCompany" ToRole="tblAccountControl" />
           <NavigationProperty Name="tblCategory" Relationship="CloudDBModel.FK_tblCategory_tblCompany" FromRole="tblCompany" ToRole="tblCategory" />
-          <NavigationProperty Name="tblCustomer" Relationship="CloudDBModel.FK_tblCustomer_tblCompany" FromRole="tblCompany" ToRole="tblCustomer" />
           <NavigationProperty Name="tblCustomerInvoice" Relationship="CloudDBModel.FK_tblCustomerInvoice_tblCompany" FromRole="tblCompany" ToRole="tblCustomerInvoice" />
           <NavigationProperty Name="tblCustomerPayment" Relationship="CloudDBModel.FK_tblCustomerPayment_tblCompany" FromRole="tblCompany" ToRole="tblCustomerPayment" />
           <NavigationProperty Name="tblEmployee" Relationship="CloudDBModel.FK_tblEmployee_tblCompany" FromRole="tblCompany" ToRole="tblEmployee" />
@@ -2428,6 +2371,7 @@
           <NavigationProperty Name="tblStock" Relationship="CloudDBModel.FK_tblStock_tblCompany" FromRole="tblCompany" ToRole="tblStock" />
           <NavigationProperty Name="tblSupplier" Relationship="CloudDBModel.FK_tblSupplier_tblCompany" FromRole="tblCompany" ToRole="tblSupplier" />
           <NavigationProperty Name="tblSupplierInvoice" Relationship="CloudDBModel.FK_tblSupplierInvoiceTable_tblCompany" FromRole="tblCompany" ToRole="tblSupplierInvoice" />
+          <NavigationProperty Name="tblCustomer" Relationship="CloudDBModel.FK_tblCustomer_tblCompany" FromRole="tblCompany" ToRole="tblCustomer" />
         </EntityType>
         <Association Name="FK_tblAccountControl_tblCompany">
           <End Type="CloudDBModel.tblCompany" Role="tblCompany" Multiplicity="1" />
@@ -2449,18 +2393,6 @@
               <PropertyRef Name="CompanyID" />
             </Principal>
             <Dependent Role="tblCategory">
-              <PropertyRef Name="CompanyID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblCustomer_tblCompany">
-          <End Type="CloudDBModel.tblCompany" Role="tblCompany" Multiplicity="1" />
-          <End Type="CloudDBModel.tblCustomer" Role="tblCustomer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblCompany">
-              <PropertyRef Name="CompanyID" />
-            </Principal>
-            <Dependent Role="tblCustomer">
               <PropertyRef Name="CompanyID" />
             </Dependent>
           </ReferentialConstraint>
@@ -2549,6 +2481,74 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerContact" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerArea" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddress" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="BranchID" Type="Int32" Nullable="false" />
+          <Property Name="CompanyID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblBranch" Relationship="CloudDBModel.FK_tblCustomer_tblBranch" FromRole="tblCustomer" ToRole="tblBranch" />
+          <NavigationProperty Name="tblCompany" Relationship="CloudDBModel.FK_tblCustomer_tblCompany" FromRole="tblCustomer" ToRole="tblCompany" />
+          <NavigationProperty Name="tblUser" Relationship="CloudDBModel.FK_tblCustomer_tblUser" FromRole="tblCustomer" ToRole="tblUser" />
+          <NavigationProperty Name="tblCustomerInvoice" Relationship="CloudDBModel.FK_tblCustomerInvoice_tblCustomer" FromRole="tblCustomer" ToRole="tblCustomerInvoice" />
+        </EntityType>
+        <Association Name="FK_tblCustomer_tblBranch">
+          <End Type="CloudDBModel.tblBranch" Role="tblBranch" Multiplicity="1" />
+          <End Type="CloudDBModel.tblCustomer" Role="tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBranch">
+              <PropertyRef Name="BranchID" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="BranchID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblCompany">
+          <End Type="CloudDBModel.tblCompany" Role="tblCompany" Multiplicity="1" />
+          <End Type="CloudDBModel.tblCustomer" Role="tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCompany">
+              <PropertyRef Name="CompanyID" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="CompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomer_tblUser">
+          <End Type="CloudDBModel.tblUser" Role="tblUser" Multiplicity="1" />
+          <End Type="CloudDBModel.tblCustomer" Role="tblCustomer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblCustomer">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomerInvoice_tblCustomer">
+          <End Type="CloudDBModel.tblCustomer" Role="tblCustomer" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CloudDBModel.tblCustomerInvoice" Role="tblCustomerInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="tblCustomerInvoice">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2621,21 +2621,6 @@
                 <ScalarProperty Name="BranchID" ColumnName="BranchID" />
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblCustomer">
-            <EntityTypeMapping TypeName="CloudDBModel.tblCustomer">
-              <MappingFragment StoreEntitySet="tblCustomer">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
-                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
-                <ScalarProperty Name="CustomerArea" ColumnName="CustomerArea" />
-                <ScalarProperty Name="CustomerContact" ColumnName="CustomerContact" />
-                <ScalarProperty Name="Customername" ColumnName="Customername" />
-                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2853,6 +2838,21 @@
                 <ScalarProperty Name="Logo" ColumnName="Logo" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomer">
+            <EntityTypeMapping TypeName="CloudDBModel.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CompanyID" ColumnName="CompanyID" />
+                <ScalarProperty Name="BranchID" ColumnName="BranchID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="CustomerArea" ColumnName="CustomerArea" />
+                <ScalarProperty Name="CustomerContact" ColumnName="CustomerContact" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

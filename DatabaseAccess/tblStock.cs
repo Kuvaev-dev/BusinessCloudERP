@@ -21,7 +21,7 @@ namespace DatabaseAccess
             this.tblCustomerInvoiceDetail = new HashSet<tblCustomerInvoiceDetail>();
             this.tblSupplierInvoiceDetail = new HashSet<tblSupplierInvoiceDetail>();
         }
-    
+
         public int ProductID { get; set; }
 
         [Required(ErrorMessage = "*Required")]
@@ -58,7 +58,7 @@ namespace DatabaseAccess
 
         [Required(ErrorMessage = "*Required")]
         public bool IsActive { get; set; }
-    
+
         public virtual tblBranch tblBranch { get; set; }
         public virtual tblCategory tblCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

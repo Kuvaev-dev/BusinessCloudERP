@@ -22,7 +22,7 @@ namespace DatabaseAccess
         {
             this.tblPayroll = new HashSet<tblPayroll>();
         }
-
+    
         public int EmployeeID { get; set; }
 
         [Required(ErrorMessage = "*Required")]
@@ -50,7 +50,6 @@ namespace DatabaseAccess
 
         [Required(ErrorMessage = "*Required")]
         public double MonthlySalary { get; set; }
-
         public int BranchID { get; set; }
         public int CompanyID { get; set; }
         public Nullable<int> UserID { get; set; }

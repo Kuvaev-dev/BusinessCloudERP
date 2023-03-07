@@ -22,7 +22,6 @@ namespace DatabaseAccess
         {
             this.tblAccountControl = new HashSet<tblAccountControl>();
             this.tblCategory = new HashSet<tblCategory>();
-            this.tblCustomer = new HashSet<tblCustomer>();
             this.tblCustomerInvoice = new HashSet<tblCustomerInvoice>();
             this.tblCustomerPayment = new HashSet<tblCustomerPayment>();
             this.tblEmployee = new HashSet<tblEmployee>();
@@ -30,8 +29,9 @@ namespace DatabaseAccess
             this.tblStock = new HashSet<tblStock>();
             this.tblSupplier = new HashSet<tblSupplier>();
             this.tblSupplierInvoice = new HashSet<tblSupplierInvoice>();
+            this.tblCustomer = new HashSet<tblCustomer>();
         }
-
+    
         public int CompanyID { get; set; }
 
         [Required(ErrorMessage = "*Required")]
@@ -42,12 +42,11 @@ namespace DatabaseAccess
         [NotMapped]
         public HttpPostedFileBase LogoFile { get; set; }
 
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAccountControl> tblAccountControl { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCategory> tblCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomer> tblCustomer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCustomerInvoice> tblCustomerInvoice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -62,5 +61,7 @@ namespace DatabaseAccess
         public virtual ICollection<tblSupplier> tblSupplier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSupplierInvoice> tblSupplierInvoice { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomer> tblCustomer { get; set; }
     }
 }
