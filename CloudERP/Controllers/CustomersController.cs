@@ -47,7 +47,7 @@ namespace CloudERP.Controllers
             return View(tblCustomer.ToList());
         }
 
-        // GET: Customers
+        // GET: SubBranchCustomers
         public ActionResult SubBranchCustomer()
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
