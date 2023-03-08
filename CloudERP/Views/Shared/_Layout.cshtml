@@ -454,6 +454,40 @@
                                             </a>
                                         </li>
                                     }
+
+                                    <li class="nav-heading ">
+                                        <span data-localize="sidebar.heading.COMPONENTS">Supplier's</span>
+                                    </li>
+                                    if (userType == 2)
+                                    {
+                                        <li class=" ">
+                                            <a href="@Url.Action("Create", "Suppliers")" title="New Supplier's">
+                                                <em class="icon-chemistry"></em>
+                                                <span data-localize="sidebar.nav.element.ELEMENTS">New Supplier's</span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="@Url.Action("Index", "Suppliers")" title="Branch Supplier's">
+                                                <em class="icon-chemistry"></em>
+                                                <span data-localize="sidebar.nav.element.ELEMENTS">Branch Supplier's</span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="@Url.Action("SubBranchSupplier", "Suppliers")" title="Sub Branch Supplier's">
+                                                <em class="icon-chemistry"></em>
+                                                <span data-localize="sidebar.nav.element.ELEMENTS">Sub Branch Supplier's</span>
+                                            </a>
+                                        </li>
+                                    }
+                                    if (userType == 1)
+                                    {
+                                        <li class=" ">
+                                            <a href="@Url.Action("AllSuppliers", "Suppliers")" title="All Supplier's">
+                                                <em class="icon-chemistry"></em>
+                                                <span data-localize="sidebar.nav.element.ELEMENTS">All Supplier's</span>
+                                            </a>
+                                        </li>
+                                    }
                                 }
                             }
                         }

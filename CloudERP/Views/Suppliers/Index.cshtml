@@ -1,0 +1,92 @@
+﻿@model IEnumerable<DatabaseAccess.tblSupplier>
+
+@{
+    ViewBag.Title = "Branch Suppliers";
+}
+
+<script src="~/Scripts/jquery-3.6.3.js"></script>
+
+<div class="card">
+    <div class="card-flat">
+        <div class="card-header">
+            <input class="form-control col-md-3" type="text" style="float: right;" id="searchsupplier" name="searchsupplier" placeholder="Search..." />
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                Company
+                            </th>
+                            <th>
+                                Branch
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Contact №
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Address
+                            </th>
+                            <th>
+                                User
+                            </th>
+                            <th>
+                                Action's
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="supplierslist">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tblCompany.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tblBranch.BranchName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SupplierName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SupplierConatctNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SupplierEmail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SupplierAddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tblUser.UserName)
+                                </td>
+                                <td class="btn-group">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.SupplierID }, new { @class="btn btn-primary" })
+                                    @Html.ActionLink("Details", "Details", new { id = item.SupplierID }, new { @class="btn btn-default" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#searchsupplier").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#supplierslist tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

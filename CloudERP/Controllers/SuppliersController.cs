@@ -12,22 +12,22 @@ using DatabaseAccess;
 
 namespace CloudERP.Controllers
 {
-    public class CustomersController : Controller
+    public class SuppliersController : Controller
     {
         private CloudDBEntities db = new CloudDBEntities();
 
-        // GET: AllCustomers
-        public ActionResult AllCustomers()
+        // GET: AllSuppliers
+        public ActionResult AllSuppliers()
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
                 return RedirectToAction("Login", "Home");
             }
-            var tblCustomer = db.tblCustomer.Include(t => t.tblBranch).Include(t => t.tblUser).Include(t => t.tblCompany);
-            return View(tblCustomer.ToList());
+            var tblSupplier = db.tblSupplier.Include(t => t.tblBranch).Include(t => t.tblUser).Include(t => t.tblCompany);
+            return View(tblSupplier.ToList());
         }
 
-        // GET: Customers
+        // GET: Suppliers
         public ActionResult Index()
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
@@ -43,13 +43,13 @@ namespace CloudERP.Controllers
             branchID = Convert.ToInt32(Convert.ToString(Session["BranchID"]));
             userID = Convert.ToInt32(Convert.ToString(Session["UserID"]));
 
-            var tblCustomer = db.tblCustomer.Include(t => t.tblBranch).Include(t => t.tblUser).Include(t => t.tblCompany)
-                                            .Where(c => c.CompanyID == companyID && c.BranchID == branchID);
-            return View(tblCustomer.ToList());
+            var tblSupplier = db.tblSupplier.Include(t => t.tblBranch).Include(t => t.tblUser).Include(t => t.tblCompany)
+                                            .Where(c => c.BranchID == branchID && c.CompanyID == companyID);
+            return View(tblSupplier.ToList());
         }
 
-        // GET: SubBranchCustomers
-        public ActionResult SubBranchCustomer()
+        // GET: SubBranchSupplier
+        public ActionResult SubBranchSupplier()
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
@@ -59,31 +59,31 @@ namespace CloudERP.Controllers
             int branchID = 0;
             branchID = Convert.ToInt32(Convert.ToString(Session["BranchID"]));
             List<int> branchIDs = BranchHelper.GetBranchIDs(branchID, db);
-            List<BranchesCustomerMV> branchCustomers = new List<BranchesCustomerMV>();
+            List<BranchesSupplierMV> branchSuppliers = new List<BranchesSupplierMV>();
 
             foreach (var item in branchIDs)
             {
-                foreach (var customer in db.tblCustomer.Where(c => c.BranchID == item))
+                foreach (var supplier in db.tblSupplier.Where(c => c.BranchID == item))
                 {
-                    var newCustomer = new BranchesCustomerMV()
+                    var newSupplier = new BranchesSupplierMV()
                     {
-                        BranchName = customer.tblBranch.BranchName,
-                        CompanyName = customer.tblCompany.Name,
-                        CustomerAddress = customer.CustomerAddress,
-                        CustomerArea = customer.CustomerArea,
-                        CustomerContact = customer.CustomerContact,
-                        CustomerName = customer.CustomerName,
-                        Description = customer.Description,
-                        User = customer.tblUser.UserName
+                        BranchName = supplier.tblBranch.BranchName,
+                        CompanyName = supplier.tblCompany.Name,
+                        SupplierName = supplier.SupplierName,
+                        SupplierAddress = supplier.SupplierAddress,
+                        SupplierConatctNo = supplier.SupplierConatctNo,
+                        SupplierEmail = supplier.SupplierEmail,
+                        Description = supplier.Description,
+                        User = supplier.tblUser.UserName
                     };
-                    branchCustomers.Add(newCustomer);
+                    branchSuppliers.Add(newSupplier);
                 }
             }
 
-            return View(branchCustomers);
+            return View(branchSuppliers);
         }
 
-        // GET: Customers/Details/5
+        // GET: Suppliers/Details/5
         public ActionResult Details(int? id)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
@@ -94,31 +94,30 @@ namespace CloudERP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblCustomer tblCustomer = db.tblCustomer.Find(id);
-            if (tblCustomer == null)
+            tblSupplier tblSupplier = db.tblSupplier.Find(id);
+            if (tblSupplier == null)
             {
                 return HttpNotFound();
             }
-            return View(tblCustomer);
+            return View(tblSupplier);
         }
 
-        // GET: Customers/Create
+        // GET: Suppliers/Create
         public ActionResult Create()
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
                 return RedirectToAction("Login", "Home");
             }
-
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Suppliers/Create
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(tblCustomer tblCustomer)
+        public ActionResult Create(tblSupplier tblSupplier)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
@@ -133,18 +132,18 @@ namespace CloudERP.Controllers
             branchID = Convert.ToInt32(Convert.ToString(Session["BranchID"]));
             userID = Convert.ToInt32(Convert.ToString(Session["UserID"]));
 
-            tblCustomer.CompanyID = companyID;
-            tblCustomer.BranchID = branchID;
-            tblCustomer.UserID = userID;
+            tblSupplier.CompanyID = companyID;
+            tblSupplier.BranchID = branchID;
+            tblSupplier.UserID = userID;
 
             if (ModelState.IsValid)
             {
-                var findCustomer = db.tblCustomer.Where(c => c.CustomerName == tblCustomer.CustomerName
-                                                          && c.CustomerContact == tblCustomer.CustomerContact
-                                                          && c.BranchID == branchID).FirstOrDefault();
-                if (findCustomer == null)
+                var findSupplier = db.tblSupplier.Where(s => s.SupplierName == tblSupplier.SupplierName 
+                                                          && s.SupplierConatctNo == tblSupplier.SupplierConatctNo 
+                                                          && s.BranchID == tblSupplier.BranchID).FirstOrDefault();
+                if (findSupplier == null)
                 {
-                    db.tblCustomer.Add(tblCustomer);
+                    db.tblSupplier.Add(tblSupplier);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -153,34 +152,30 @@ namespace CloudERP.Controllers
                     ViewBag.Message = "Already Exist";
                 }
             }
-            return View(tblCustomer);
+            return View(tblSupplier);
         }
 
-        // GET: Customers/Edit/5
+        // GET: Suppliers/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
-            {
-                return RedirectToAction("Login", "Home");
-            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            tblCustomer tblCustomer = db.tblCustomer.Find(id);
-            if (tblCustomer == null)
+            tblSupplier tblSupplier = db.tblSupplier.Find(id);
+            if (tblSupplier == null)
             {
                 return HttpNotFound();
             }
-            return View(tblCustomer);
+            return View(tblSupplier);
         }
 
-        // POST: Customers/Edit/5
+        // POST: Suppliers/Edit/5
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в разделе https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(tblCustomer tblCustomer)
+        public ActionResult Edit(tblSupplier tblSupplier)
         {
             if (string.IsNullOrEmpty(Convert.ToString(Session["CompanyID"])))
             {
@@ -189,16 +184,17 @@ namespace CloudERP.Controllers
 
             int userID = 0;
             userID = Convert.ToInt32(Convert.ToString(Session["UserID"]));
-            tblCustomer.UserID = userID;
+            tblSupplier.UserID = userID;
 
             if (ModelState.IsValid)
             {
-                var findCustomer = db.tblCustomer.Where(c => c.CustomerName == tblCustomer.CustomerName
-                                                          && c.CustomerContact == tblCustomer.CustomerContact
-                                                          && c.CustomerID != tblCustomer.CustomerID).FirstOrDefault();
-                if (findCustomer == null)
+                var findSupplier = db.tblSupplier.Where(s => s.SupplierName == tblSupplier.SupplierName
+                                                          && s.SupplierConatctNo == tblSupplier.SupplierConatctNo
+                                                          && s.BranchID == tblSupplier.BranchID
+                                                          && s.SupplierID != tblSupplier.SupplierID).FirstOrDefault();
+                if (findSupplier == null)
                 {
-                    db.Entry(tblCustomer).State = EntityState.Modified;
+                    db.Entry(tblSupplier).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -207,33 +203,7 @@ namespace CloudERP.Controllers
                     ViewBag.Message = "Already Exist";
                 }
             }
-            return View(tblCustomer);
-        }
-
-        // GET: Customers/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            tblCustomer tblCustomer = db.tblCustomer.Find(id);
-            if (tblCustomer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tblCustomer);
-        }
-
-        // POST: Customers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            tblCustomer tblCustomer = db.tblCustomer.Find(id);
-            db.tblCustomer.Remove(tblCustomer);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View(tblSupplier);
         }
 
         protected override void Dispose(bool disposing)
