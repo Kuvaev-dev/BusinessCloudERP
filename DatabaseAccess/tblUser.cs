@@ -21,16 +21,18 @@ namespace DatabaseAccess
             this.tblAccountHead = new HashSet<tblAccountHead>();
             this.tblAccountSubControl = new HashSet<tblAccountSubControl>();
             this.tblCategory = new HashSet<tblCategory>();
+            this.tblCustomer = new HashSet<tblCustomer>();
             this.tblCustomerInvoice = new HashSet<tblCustomerInvoice>();
             this.tblCustomerPayment = new HashSet<tblCustomerPayment>();
             this.tblFinancialYear = new HashSet<tblFinancialYear>();
             this.tblPayroll = new HashSet<tblPayroll>();
+            this.tblPurchaseCart = new HashSet<tblPurchaseCart>();
+            this.tblSaleCart = new HashSet<tblSaleCart>();
             this.tblStock = new HashSet<tblStock>();
             this.tblSupplier = new HashSet<tblSupplier>();
             this.tblSupplierInvoice = new HashSet<tblSupplierInvoice>();
             this.tblSupplierPayment = new HashSet<tblSupplierPayment>();
             this.tblTransaction = new HashSet<tblTransaction>();
-            this.tblCustomer = new HashSet<tblCustomer>();
         }
     
         public int UserID { get; set; }
@@ -51,6 +53,8 @@ namespace DatabaseAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCategory> tblCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblCustomer> tblCustomer { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCustomerInvoice> tblCustomerInvoice { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblCustomerPayment> tblCustomerPayment { get; set; }
@@ -58,6 +62,10 @@ namespace DatabaseAccess
         public virtual ICollection<tblFinancialYear> tblFinancialYear { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPayroll> tblPayroll { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblPurchaseCart> tblPurchaseCart { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblSaleCart> tblSaleCart { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblStock> tblStock { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -69,7 +77,5 @@ namespace DatabaseAccess
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTransaction> tblTransaction { get; set; }
         public virtual tblUserType tblUserType { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblCustomer> tblCustomer { get; set; }
     }
 }

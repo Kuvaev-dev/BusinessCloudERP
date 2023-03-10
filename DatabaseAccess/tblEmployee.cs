@@ -35,9 +35,6 @@ namespace DatabaseAccess
         [Required(ErrorMessage = "*Required")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "*Required")]
-        [DataType(DataType.MultilineText)]
         public string Address { get; set; }
         public string CNIC { get; set; }
 
@@ -58,8 +55,8 @@ namespace DatabaseAccess
         public HttpPostedFileBase LogoFile { get; set; }
 
         public virtual tblBranch tblBranch { get; set; }
+        public virtual tblCompany tblCompany { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPayroll> tblPayroll { get; set; }
-        public virtual tblCompany tblCompany { get; set; }
     }
 }
