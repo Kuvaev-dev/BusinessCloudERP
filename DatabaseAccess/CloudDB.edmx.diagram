@@ -4,100 +4,99 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="56e0ea23139a45b3b4fcc15888a37489" Name="Diagram1">
-        <EntityTypeShape EntityType="CloudDB.tblAccountControl" Width="1.5" PointX="5.25" PointY="25.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblAccountHead" Width="1.5" PointX="5.25" PointY="29.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblAccountSubControl" Width="1.5" PointX="13.5" PointY="20.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblBranch" Width="1.5" PointX="9" PointY="17.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblBranchType" Width="1.5" PointX="6.75" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblCategory" Width="1.5" PointX="8.25" PointY="27.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblCompany" Width="1.5" PointX="9" PointY="37.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblCustomer" Width="1.5" PointX="8.25" PointY="23.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblCustomerInvoice" Width="1.5" PointX="13.5" PointY="30.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblCustomerInvoiceDetail" Width="1.5" PointX="21.75" PointY="31" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblCustomerPayment" Width="1.5" PointX="18.75" PointY="28.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblEmployee" Width="1.5" PointX="6" PointY="34.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblFinancialYear" Width="1.5" PointX="5.25" PointY="41.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblPayroll" Width="1.5" PointX="8.25" PointY="31.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblPurchaseCart" Width="1.5" PointX="11.25" PointY="27.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblPurchaseCartDetail" Width="1.5" PointX="21.75" PointY="27.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblSaleCart" Width="1.5" PointX="10.5" PointY="31.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblSaleCartDetail" Width="1.5" PointX="21.75" PointY="34.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblStock" Width="1.5" PointX="16.5" PointY="29.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblSupplier" Width="1.5" PointX="11.25" PointY="22.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblSupplierInvoice" Width="1.5" PointX="13.5" PointY="25.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblSupplierInvoiceDetail" Width="1.5" PointX="18.75" PointY="24.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblSupplierPayment" Width="1.5" PointX="16.5" PointY="25.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblTransaction" Width="1.5" PointX="18.75" PointY="33.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblUser" Width="1.5" PointX="3" PointY="26.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="CloudDB.tblUserType" Width="1.5" PointX="0.75" PointY="28.375" IsExpanded="true" />
-        <AssociationConnector Association="CloudDB.FK_tblAccountControl_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblAccountControl_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblAccountControl_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblAccountSubControl_tblAccountControl" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblTransaction_tblAccountControl" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblAccountHead_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblAccountSubControl_tblAccountHead" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblTransaction_tblAccountHead" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblTransection_tblAccountHead" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblAccountSubControl_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblAccountSubControl_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblTransection_tblAccountSubControl" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblBranch_tblBranchType" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCategory_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomer_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomerInvoice_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomerPayment_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblEmployee_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblPayroll_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblPurchaseCartTable_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSaleCart_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblStock_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplier_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplierInvoiceTable_tblBranch" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCategory_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCategory_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblStock_tblCategory" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomer_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomerInvoice_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomerPayment_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblEmployee_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblPayroll_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblPurchaseCartTable_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSaleCart_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblStock_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplier_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplierInvoiceTable_tblCompany" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomer_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomerInvoice_tblCustomer" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSaleCart_tblCustomer" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomerInvoice_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomerInvoiceDetail_tblCustomerInvoice" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomerPayment_tblCustomerInvoice" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomerInvoiceDetail_tblStock" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblCustomerPayment_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblPayroll_tblEmployee" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblFinancialYear_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblTransaction_tblFinancialYear" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblTransection_tblFinancialYear" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblPayroll_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblPurchaseCart_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblPurchaseCartDetail_tblPurchaseCart" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblPurchaseCartTable_tblSupplier" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblPurchaseCartDetail_tblStock" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSaleCart_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSaleCartDetail_tblSaleCart" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSaleCartDetail_tblStock" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblStock_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplierInvoiceDetail_tblStock" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplier_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplierInvoiceTable_tblSupplier" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplierPayment_tblSupplier" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplierInvoice_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplierInvoiceDetail_tblSupplierInvoice" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblSupplierPayment_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblTransaction_tblUser" ManuallyRouted="false" />
-        <AssociationConnector Association="CloudDB.FK_tblUser_tblUserType" ManuallyRouted="false" />
+      <Diagram DiagramId="7ef7af44bdab48e898cbc81f1ca79db9" Name="Diagram1">
+        <EntityTypeShape EntityType="CoudDB.tblAccountControl" Width="1.5" PointX="5.25" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblAccountHead" Width="1.5" PointX="5.25" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblAccountSubControl" Width="1.5" PointX="10.5" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblBranch" Width="1.5" PointX="9" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblBranchType" Width="1.5" PointX="6.75" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblCategory" Width="1.5" PointX="8.25" PointY="26" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblCompany" Width="1.5" PointX="9" PointY="35.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblCustomer" Width="1.5" PointX="8.25" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblCustomerInvoice" Width="1.5" PointX="13.5" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblCustomerInvoiceDetail" Width="1.5" PointX="18.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblCustomerPayment" Width="1.5" PointX="18.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblEmployee" Width="1.5" PointX="6" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblFinancialYear" Width="1.5" PointX="5.25" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblPayroll" Width="1.5" PointX="8.25" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblPurchaseCart" Width="1.5" PointX="11.25" PointY="25.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblPurchaseCartDetail" Width="1.5" PointX="21.75" PointY="27.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblSaleCartDetail" Width="1.5" PointX="21.75" PointY="31.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblStock" Width="1.5" PointX="16.5" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblSupplier" Width="1.5" PointX="11.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblSupplierInvoice" Width="1.5" PointX="13.5" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblSupplierInvoiceDetail" Width="1.5" PointX="18.75" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblSupplierPayment" Width="1.5" PointX="16.5" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblTransaction" Width="1.5" PointX="12.75" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblUser" Width="1.5" PointX="3" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoudDB.tblUserType" Width="1.5" PointX="0.75" PointY="26.5" IsExpanded="true" />
+        <AssociationConnector Association="CoudDB.FK_tblAccountControl_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblAccountControl_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblAccountControl_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblAccountSubControl_tblAccountControl" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblTransaction_tblAccountControl" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblAccountHead_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblAccountSubControl_tblAccountHead" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblTransaction_tblAccountHead" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblTransection_tblAccountHead" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblAccountSubControl_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblAccountSubControl_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblTransection_tblAccountSubControl" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblBranch_tblBranchType" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCategory_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomer_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomerInvoice_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomerPayment_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblEmployee_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPayroll_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPurchaseCartDetail_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPurchaseCartTable_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSaleCartDetail_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblStock_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplier_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplierInvoiceTable_tblBranch" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCategory_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCategory_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblStock_tblCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomer_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomerInvoice_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomerPayment_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblEmployee_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPayroll_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPurchaseCartDetail_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPurchaseCartTable_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSaleCartDetail_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblStock_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplier_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplierInvoiceTable_tblCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomer_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomerInvoice_tblCustomer" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomerInvoice_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomerInvoiceDetail_tblCustomerInvoice" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomerPayment_tblCustomerInvoice" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomerInvoiceDetail_tblStock" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblCustomerPayment_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPayroll_tblEmployee" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblFinancialYear_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblTransaction_tblFinancialYear" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblTransection_tblFinancialYear" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPayroll_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPurchaseCart_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPurchaseCartTable_tblSupplier" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPurchaseCartDetail_tblStock" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblPurchaseCartDetail_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSaleCartDetail_tblStock" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSaleCartDetail_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblStock_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplierInvoiceDetail_tblStock" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplier_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplierInvoiceTable_tblSupplier" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplierPayment_tblSupplier" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplierInvoice_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplierInvoiceDetail_tblSupplierInvoice" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblSupplierPayment_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblTransaction_tblUser" ManuallyRouted="false" />
+        <AssociationConnector Association="CoudDB.FK_tblUser_tblUserType" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

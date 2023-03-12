@@ -54,7 +54,7 @@ namespace DatabaseAccess
         [Required(ErrorMessage = "*Required")]
         public int StockTreshHoldQuantity { get; set; }
 
-        [DataType(DataType.MultilineText)]
+        [Required(ErrorMessage = "*Required")]
         public string Description { get; set; }
         public int UserID { get; set; }
 
